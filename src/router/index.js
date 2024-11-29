@@ -3,7 +3,7 @@ import LayoutFull from '@/layouts/LayoutFull.vue';
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/ConselhoView.vue';
 import SobreView from '@/views/SobreView.vue';
-import OcorrenciaView from '@/views/OcorrenciaView.vue'
+import OcorrenciaView from '@/views/OcorrenciaView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,7 +35,7 @@ const router = createRouter({
 
         }
       ],
- } ]
-},
+    },
+    ]},
 )
 export default router;
