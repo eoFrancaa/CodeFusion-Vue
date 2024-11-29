@@ -20,10 +20,22 @@ export const useAuthStore = defineStore('auth', () => {
     });
   };
 
+  const logout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      setUser(null);
+      isAuthenticated.value = false;
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return {
     user,
     isAuthenticated,
     setUser,
-    checkUserAuth
+    checkUserAuth,
+    logout
   };
 });
