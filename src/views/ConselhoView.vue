@@ -61,13 +61,13 @@
     <td>2.0</td>
     <td class="view-ocorrencias">Ver Ocorrencias</td>
   </tr>
-  <hr>
+  <hr />
   <tr class="coluna-desc">
     <td>Leandro dos Santos</td>
     <td>6.0</td>
     <td class="view-ocorrencias">Ver Ocorrencias</td>
   </tr>
-  <hr>
+  <hr />
 </template>
 
 <style scoped>
@@ -116,19 +116,17 @@
   height: 5vh;
   border: black;
   gap: 40vh;
-
 }
-.view-ocorrencias{
-  background-color:#57788D;
+.view-ocorrencias {
+  background-color: #57788d;
   padding: 7px;
-  color:#FFFF ;
+  color: #ffff;
   border-radius: 10px;
   font-size: large;
   transition: 0.3s ease-in;
   cursor: pointer;
-  }
-.view-ocorrencias:hover{
+}
+.view-ocorrencias:hover {
   transform: scale(0.9);
 }
-
 </style>
