@@ -5,9 +5,9 @@ export default {
   setup() {
 
     const pessoa = ref([
-      { nome: 'Rafael', },
-      { nome: 'Eduardo', },
-      { nome: 'Leandro', }
+      { nome: 'Rafael de França', descricao: 'Designer, Programador,Front-end Back-end' },
+      { nome: 'Eduardo Gabriel dos Santos', descricao: 'Designer, Programador, Front-end Back-end' },
+      { nome: 'Leandro gustavo dos santos',  descricao: 'Designer, Programador, Front-end Back-end' },
     ]);
 
     return {
@@ -19,10 +19,11 @@ export default {
 <template>
   <div class="container-sobre">
     <div class="sobre-dev">
-      
       <div class="fotos-dev" v-for="(pessoa, index) in pessoa" :key="index">
-        <p class="nome-dev">{{ pessoa.nome }}</p>
-      </div>
+        <p class="descricao-dev">{{ pessoa.nome }}</p>
+        <h4 id="funcao-dev">Funções:</h4>
+        <p class="descricao-dev">{{ pessoa.descricao }}</p>
+    </div>
     </div>
     <div class="sobre-texto">
       <div class="text">
@@ -48,6 +49,7 @@ export default {
   height: 150px;
   background-color: #D9D9D9;
   border-radius: 50%;
+  margin-right: 50px;
 }
 .sobre-texto{
   border-radius: 30px;
@@ -56,6 +58,7 @@ export default {
   background-color: #D9D9D9;
   color: #000000;
   margin-top: 30px;
+  margin-left: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +69,13 @@ export default {
   font-size: 30px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-.descicao-sobre{
-  display: flex;
+.descricao-dev{
+  margin-left: 155px;
+  white-space: nowrap;
+}
+#funcao-dev{
+  margin-left: 155px;
+  white-space: nowrap;
+  color: #2C4156;
 }
 </style>
