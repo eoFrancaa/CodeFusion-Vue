@@ -8,9 +8,9 @@
     <img class="logo" src="@/assets/Img/Logo.png" alt="Logo">
 
     <div class="nav-button">
-      <router-link class="bnt-style" to="/"><p>Home</p></router-link> 
-      <router-link class="bnt-style" to="/conselho"><p>Conselho</p></router-link> 
-      <router-link class="bnt-style" to=""><p>Sobre</p></router-link> 
+      <router-link class="bnt-style" to="/"><p>Home</p></router-link>
+      <router-link class="bnt-style" to="/conselho"><p>Conselho</p></router-link>
+      <router-link class="bnt-style" to="/sobre"><p>Sobre</p></router-link>
     </div>
 
     <div>
@@ -34,7 +34,7 @@
 }
 
 .logo:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .nav-container {
