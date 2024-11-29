@@ -27,7 +27,7 @@ export const useAlunoStore = defineStore('aluno', () => {
   }
 
   async function getNotaByTurmaAndMateria(turma, materia) {
-    
+
   }
 
   return { alunos, createAluno, getAlunos, getAlunosByTurma, getAlunosById };
