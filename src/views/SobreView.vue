@@ -5,9 +5,9 @@ export default {
   setup() {
 
     const pessoa = ref([
-      { nome: 'Rafael', },
-      { nome: 'Eduardo', },
-      { nome: 'Leandro', }
+      { nome: 'Rafael de França', descricao: 'Designer, Programador,Front-end Back-end' },
+      { nome: 'Eduardo Gabriel dos Santos', descricao: 'Designer, Programador, Front-end Back-end' },
+      { nome: 'Leandro gustavo dos santos',  descricao: 'Designer, Programador, Front-end Back-end' },
     ]);
 
     return {
@@ -21,7 +21,9 @@ export default {
     <div class="sobre-dev">
       
       <div class="fotos-dev" v-for="(pessoa, index) in pessoa" :key="index">
-        <p class="nome-dev">{{ pessoa.nome }}</p>
+        <p class="descricao-dev">{{ pessoa.nome }}</p>
+        <h4 id="funcao-dev">Funções:</h4>
+        <p class="descricao-dev">{{ pessoa.descricao }}</p>
       </div>
     </div>
     <div class="sobre-texto">
