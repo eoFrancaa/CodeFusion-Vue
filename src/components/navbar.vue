@@ -1,3 +1,4 @@
+
 <script setup>
 </script>
 
@@ -67,29 +68,13 @@
   font-weight: 500;
   text-decoration: none;
   position: relative;
-  transition: all 0.3s ease;
-}
-.bnt-style:hover {
-  color: #f1f1f1;
-}
-
-.bnt-style:after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #f1f1f1;
-  transform: scaleX(0);
-  transform-origin: bottom right;
   transition: transform 0.3s ease;
 }
-
-.bnt-style:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.bnt-style:hover {
+  color: #d3d3d3;
+  transform: scale(1.1);
 }
+
 .bnt-login {
   width: 130px;
   height: 45px;
@@ -105,14 +90,6 @@
 .bnt-login:hover {
   background-color: #4e6f82;
   transform: scale(1.05);
-}
-
-.bnt-login:focus {
-  outline: none;
-}
-.nav-container.scrolled {
-  background: linear-gradient(90deg, #1f2b33, #2C4156);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 </style>
 

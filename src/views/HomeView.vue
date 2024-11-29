@@ -31,16 +31,13 @@
   cursor: pointer;
   position: fixed;
   bottom: 15vh;
-  left: 50%;
-  transform: translateX(-50%);
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+  left: 40%;
+  transition: background-color 0.3s ease,transform 0.3s ease;
 }
 
 .b-inicio:hover {
   background-color: #4e6f82;
-  transform: translateX(-50%) scale(1.1);
+  transform:  scale(1.1);
 }
 .welcome {
   position: absolute;
