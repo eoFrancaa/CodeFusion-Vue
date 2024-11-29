@@ -59,13 +59,13 @@
   <tr class="coluna-desc">
     <td>Rafael de França</td>
     <td>2.0</td>
-    <td class="view-ocorrencias">Ver Ocorrencias</td>
+    <RouterLink class="view-ocorrencias" to="/ocorrencia"><td  @click="goOCorencia">Ver Ocorrencias</td></RouterLink> 
   </tr>
   <hr />
   <tr class="coluna-desc">
     <td>Leandro dos Santos</td>
     <td>6.0</td>
-    <td class="view-ocorrencias">Ver Ocorrencias</td>
+    <RouterLink class="view-ocorrencias" to="/ocorrencia"><td  @click="goOCorencia">Ver Ocorrencias</td></RouterLink> 
   </tr>
   <hr />
 </template>
@@ -125,8 +125,14 @@
   font-size: large;
   transition: 0.3s ease-in;
   cursor: pointer;
+  text-decoration: none;
+
 }
 .view-ocorrencias:hover {
   transform: scale(0.9);
 }
 </style>
+
+<script setup>
+
+</script>
