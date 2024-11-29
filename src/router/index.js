@@ -3,6 +3,7 @@ import LayoutFull from '@/layouts/LayoutFull.vue';
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/ConselhoView.vue';
 import SobreView from '@/views/SobreView.vue';
+import OcorrenciaView from '@/views/OcorrenciaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +20,7 @@ const router = createRouter({
         },
         {
           path: '/conselho',
-          name: 'About',
+          name: 'Conselho',
           component: AboutView,
         },
         {
@@ -27,6 +28,12 @@ const router = createRouter({
           name: 'Sobre',
           component: SobreView,
         },
+        {
+          path:'/ocorrencia',
+          name: 'Ocorrencia',
+          component: OcorrenciaView,
+
+        }
       ],
  } ]
 },
