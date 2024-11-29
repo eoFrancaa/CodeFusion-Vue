@@ -21,6 +21,7 @@ export default {
     <div class="sobre-dev">
       
       <div class="fotos-dev" v-for="(pessoa, index) in pessoa" :key="index">
+        <p class="descricao-dev">{{ pessoa.nome }}</p>
         <h4 id="funcao-dev">Funções:</h4>
         <p class="descricao-dev">{{ pessoa.descricao }}</p>
       </div>
