@@ -14,15 +14,11 @@ aluno.value = await alunoStore.getAlunosById(router.params.id)
 })
 </script>
 <template>
-  <div>
-    <div class="info-aluno">
-      <!-- <img class="img-aluno" :src="aluno.url" alt="" /> -->
-      <div>
+  <div class="info-aluno">
+      <img class="img-aluno" :src="aluno.capa_url"  />
         <p> Nome do Aluno: {{ aluno.nome }}</p>
-        <p>Matricula do Aluno: {{ aluno.matricula }}</p>
-      </div>
+        <p>Email do Aluno: {{ aluno.email }}</p>
     </div>
-  </div>
 <div class="Add">
   <button class="Add-Ocorencia">Adicionar Ocorrencias</button>
 </div>
@@ -63,7 +59,8 @@ aluno.value = await alunoStore.getAlunosById(router.params.id)
   gap: 2.1rem;
   font-family: 'Poppins', sans-serif;
   margin-left: 10vh;
-
+  flex-direction: column;
+  align-items: flex-start;
 }
 .img-aluno {
   max-width: 200px;
