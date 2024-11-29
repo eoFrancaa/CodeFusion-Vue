@@ -12,7 +12,6 @@
       <router-link class="bnt-style" to="/conselho"><p>Conselho</p></router-link>
       <router-link class="bnt-style" to="/sobre"><p>Sobre</p></router-link>
     </div>
-
     <div>
       <router-link to=""><button class="bnt-login">Perfil</button></router-link>
     </div>
