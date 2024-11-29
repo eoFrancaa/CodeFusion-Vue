@@ -8,7 +8,7 @@ export default class ProductService {
 
   async getAlunoByturma(turma) {
     console.log(turma)
-    const response = await axios.get(`/alunos/?turma=${turma}`);
+    const response = await axios.get(`/alunos/?turma__id=${turma}`);
     return response.data.results;
   }
 

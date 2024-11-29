@@ -16,9 +16,10 @@ aluno.value = await alunoStore.getAlunosById(router.params.id)
 <template>
   <div>
     <div class="info-aluno">
-      <img class="img-aluno" src="@/assets/Img/perfil.jpg" alt="" />
+      <!-- <img class="img-aluno" :src="aluno.url" alt="" /> -->
       <div>
-        {{ aluno.nome }}
+        <p> Nome do Aluno: {{ aluno.nome }}</p>
+        <p>Matricula do Aluno: {{ aluno.matricula }}</p>
       </div>
     </div>
   </div>

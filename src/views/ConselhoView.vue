@@ -14,7 +14,6 @@
     console.log(activeTurma.value)
 
     alunos.value = await alunoStore.getAlunosByTurma(activeTurma.value)
-    // get alunos por activeTurma.id
   })
 
   onMounted(async () => {
@@ -26,11 +25,11 @@
   <div class="Filtro-conselho">
     <div>
       <label>Ano</label>
-      <select name="Ano">
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-      </select>
+<select name="Ano">
+  <option v-for="turma in turmas" :key="turma.id" :value="turma.ano">
+    {{ turma.ano }}
+  </option>
+</select>
     </div>
     <div>
       <label>Trimestre</label>
@@ -43,7 +42,7 @@
     <div>
       <label>Turma</label>
       <select name="Turma" v-model="activeTurma">
-        <option v-for="turma in turmas" :key="turma.id" :value="turma.id">{{ turma.nome }}</option>
+        <option v-for="turma in turmas" :key="turma.id" :value="turma.id">{{ turma.nome }} - {{ turma.ano }}</option>
       </select>
     </div>
   </div>
@@ -74,12 +73,14 @@
 
   <tr class="coluna-info">
     <td>Nome</td>
+
     <td>Nota</td>
     <td>Ocorrencias</td>
   </tr>
-  <tr class="coluna-desc">
-    for alunos
-    <RouterLink class="view-ocorrencias" :to="'/ocorrencia/' + alunos.id"><td  @click="goOCorencia">Ver Ocorrencias</td></RouterLink>
+  <tr class="coluna-desc" v-for="aluno in alunos" :key="aluno.id">
+    <td>{{ aluno.nome }}</td>
+    <td>2.0</td>
+    <RouterLink class="view-ocorrencias" :to="'/ocorrencia/' + aluno.id"><td  @click="goOCorencia">Ver ocorrencias</td></RouterLink>
   </tr>
   <hr />
 </template>
