@@ -1,38 +1,51 @@
-<script setup >
-import { ref } from 'vue';
-import {getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "firebase/auth"
-
+<script setup>
+import { ref, onMounted } from 'vue';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useAuthStore } from '@/stores/auth.js';
 import router from '@/router';
 
- const email = ref("")
- const password = ref("")
 
- const register = ()=> {
-createUserWithEmailAndPassword(getAuth(),email.value ,password.value)
-  .then((data) =>{
-    console.log("Logado com Sucesso")
-    router.push('/')
-  })
-  .cath((error) =>{
-    console.log(error.code);
+const email = ref('');
+const password = ref('');
 
-    alert(error.message);
-  })
- };
 
- const singinWithGoogle = ()=> {
-const provider = new GoogleAuthProvider();
-signInWithPopup(getAuth(),provider)
-  .then((result) => {
-    console.log(result.user);
-    router.push("/")
-  })
-  .catch((error) =>{
+const authStore = useAuthStore();
 
-  });
+
+const register = () => {
+  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+      console.log('Registrado com sucesso');
+      authStore.setUser(data.user);
+      router.push('/');
+    })
+    .catch((error) => {
+      console.log(error.code);
+      alert(error.message);
+    });
 };
 
+
+const singinWithGoogle = () => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(getAuth(), provider)
+    .then((result) => {
+      console.log(result.user);
+      authStore.setUser(result.user);
+      router.push('/');
+    })
+    .catch((error) => {
+      console.error(error);
+      alert(error.message);
+    });
+};
+
+
+onMounted(() => {
+  authStore.checkUserAuth();
+});
 </script>
+
 <template>
   <div class="register-container">
     <div class="form-container">

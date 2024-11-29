@@ -36,7 +36,7 @@ const handleSingOut = () => {
   });
 };
 
- isLoggedIn
+
 </script>
 
 <template>
@@ -77,6 +77,10 @@ const handleSingOut = () => {
   margin-left: 50px;
   max-width: 100px;
   transition: transform 0.3s ease;
+}
+
+.logo:hover{
+  transform: scale(1.2);
 }
 
 .modalProfile {

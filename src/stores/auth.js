@@ -1,20 +1,29 @@
-import { ref } from 'vue';
+
 import { defineStore } from 'pinia';
-
-import AuthService from '@/services/auth';
-const authService = new AuthService();
-
+import { ref } from 'vue';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useStorage } from '@vueuse/core'
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref({});
+  const user = useStorage("user", null);
+  const isAuthenticated = useStorage("Auth", false);
 
-  async function setToken(token) {
-    user.value = await authService.postUserToken(token);
-  }
+  const setUser = (newUser) => {
+    user.value = newUser;
+    isAuthenticated.value = !!newUser;
+  };
 
-  function unsetToken() {
-    user.value = {};
-  }
 
-  return { user, setToken, unsetToken };
+  const checkUserAuth = () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  };
+
+  return {
+    user,
+    isAuthenticated,
+    setUser,
+    checkUserAuth
+  };
 });
-  

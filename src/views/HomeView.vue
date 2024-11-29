@@ -1,7 +1,12 @@
 <script setup>
+import { useAuthStore } from '@/stores/auth.js';
+import { RouterLink } from 'vue-router';
 
 
+const authStore = useAuthStore();
 
+
+const isAuthenticated = authStore.isAuthenticated;
 </script>
 
 <template>
@@ -18,9 +23,11 @@
       </p>
     </div>
 
-   <RouterLink to="/conselho">
-   <button class="b-inicio">Começar</button>
-   </RouterLink>
+    <RouterLink :to="isAuthenticated ? '/conselho' : '/register'">
+      <button class="b-inicio">
+        {{ isAuthenticated ? 'Começar' : 'Registre-se' }}
+      </button>
+    </RouterLink>
   </div>
 </template>
 
