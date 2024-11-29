@@ -56,10 +56,10 @@ const handleSingOut = () => {
 
     <div v-if="modalProfile" class="modalProfile" @click="closeModal">
       <div class="modal-content">
-        <router-link v-if="!isLoggedIn" class="bnt-style" to="/register"><p>Register</p></router-link>
-        <router-link v-if="!isLoggedIn" class="bnt-style" to="/singin"><p>SignIn</p></router-link>
+        <router-link v-if="!isLoggedIn" class="bnt-style" to="/register"><p>Registrar</p></router-link>
+        <router-link v-if="!isLoggedIn" class="bnt-style" to="/singin"><p>Entrar</p></router-link>
 
-        <button v-if="isLoggedIn" @click="handleSingOut">Sign Out</button>
+        <button class="bnt-style" v-if="isLoggedIn" @click="handleSingOut">Sign Out</button>
       </div>
     </div>
   </div>
