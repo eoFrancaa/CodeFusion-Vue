@@ -1,3 +1,26 @@
+<script setup>
+  import { computed, onMounted, ref, watch } from 'vue';
+  import { useTurmaStore } from '@/stores/turma';
+  import { useAlunoStore } from '@/stores/aluno';
+
+  const turmaStore = useTurmaStore()
+  const alunoStore = useAlunoStore()
+
+  const turmas = computed(() => turmaStore.turmas)
+  const alunos = ref([])
+
+  const activeTurma = ref()
+  watch(() => activeTurma.value, async () => {
+    console.log(activeTurma.value)
+
+    alunos.value = await alunoStore.getAlunosByTurma(activeTurma.value)
+    // get alunos por activeTurma.id
+  })
+
+  onMounted(async () => {
+    await turmaStore.getTurmas()
+  })
+</script>
 <template>
   <h1 class="title">Conselhos</h1>
   <div class="Filtro-conselho">
@@ -19,10 +42,8 @@
     </div>
     <div>
       <label>Turma</label>
-      <select name="Turma">
-        <option value="3info1">3info1</option>
-        <option value="3info2">3info2</option>
-        <option value="3info3">3info3</option>
+      <select name="Turma" v-model="activeTurma">
+        <option v-for="turma in turmas" :key="turma.id" :value="turma.id">{{ turma.nome }}</option>
       </select>
     </div>
   </div>
@@ -57,15 +78,8 @@
     <td>Ocorrencias</td>
   </tr>
   <tr class="coluna-desc">
-    <td>Rafael de França</td>
-    <td>2.0</td>
-    <RouterLink class="view-ocorrencias" to="/ocorrencia"><td  @click="goOCorencia">Ver Ocorrencias</td></RouterLink> 
-  </tr>
-  <hr />
-  <tr class="coluna-desc">
-    <td>Leandro dos Santos</td>
-    <td>6.0</td>
-    <RouterLink class="view-ocorrencias" to="/ocorrencia"><td  @click="goOCorencia">Ver Ocorrencias</td></RouterLink> 
+    for alunos
+    <RouterLink class="view-ocorrencias" :to="'/ocorrencia/' + alunos.id"><td  @click="goOCorencia">Ver Ocorrencias</td></RouterLink>
   </tr>
   <hr />
 </template>
@@ -99,6 +113,7 @@
 .coluna-info {
   display: flex;
   align-items: center;
+
   justify-content: space-around;
   margin-top: 10vh;
   background-color: #2c4156;
@@ -133,6 +148,3 @@
 }
 </style>
 
-<script setup>
-
-</script>
