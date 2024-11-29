@@ -1,8 +1,8 @@
 
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useStorage } from '@vueuse/core'
+
 export const useAuthStore = defineStore('auth', () => {
   const user = useStorage("user", null);
   const isAuthenticated = useStorage("Auth", false);
