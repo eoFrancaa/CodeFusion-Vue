@@ -1,11 +1,25 @@
-<script></script>
+<script setup>
+import {ref, onMounted} from 'vue'
+import { useAlunoStore } from '@/stores/aluno';
+import { useRoute } from 'vue-router';
+
+const router = useRoute()
+
+const alunoStore = useAlunoStore()
+
+const aluno = ref({})
+
+onMounted( async () => {
+aluno.value = await alunoStore.getAlunosById(router.params.id)
+})
+</script>
 <template>
   <div>
     <div class="info-aluno">
-      <img class="img-aluno" src="@/assets/Img/perfil.jpg" alt="" />
+      <!-- <img class="img-aluno" :src="aluno.url" alt="" /> -->
       <div>
-        <h1>Rafael de França</h1>
-        <h2>3info1</h2>
+        <p> Nome do Aluno: {{ aluno.nome }}</p>
+        <p>Matricula do Aluno: {{ aluno.matricula }}</p>
       </div>
     </div>
   </div>

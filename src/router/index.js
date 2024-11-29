@@ -29,7 +29,7 @@ const router = createRouter({
           component: SobreView,
         },
         {
-          path:'/ocorrencia',
+          path:'/ocorrencia/:id',
           name: 'Ocorrencia',
           component: OcorrenciaView,
 
