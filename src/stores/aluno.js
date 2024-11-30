@@ -25,10 +25,6 @@ export const useAlunoStore = defineStore('aluno', () => {
     const data = await alunoService.getAlunosById(id)
     return data
   }
-
-  async function getNotaByTurmaAndMateria(turma, materia) {
-    
-  }
-
+  
   return { alunos, createAluno, getAlunos, getAlunosByTurma, getAlunosById };
 });

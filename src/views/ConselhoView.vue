@@ -1,102 +1,109 @@
 <script setup>
   import { computed, onMounted, ref, watch } from 'vue';
   import { useTurmaStore } from '@/stores/turma';
-  import { useAlunoStore } from '@/stores/aluno';
+  import { useNotasStore } from '@/stores/notas';
+  import { useDisciplinasStore } from '@/stores/disciplinas';
+  // import { useTrimestreStore } from '@/stores/trimestre';
 
   const turmaStore = useTurmaStore()
-  const alunoStore = useAlunoStore()
+  const notaStore = useNotasStore()
+  const disciplinasStore = useDisciplinasStore()
+  // const trimestresStore = useTrimestreStore()
 
   const turmas = computed(() => turmaStore.turmas)
-  const alunos = ref([])
+  const notas = ref([])
+  const disciplinas = ref([])
+  // const trimestres = ref([])
 
   const activeTurma = ref()
-  watch(() => activeTurma.value, async () => {
-    console.log(activeTurma.value)
+  const activeDisciplina = ref()
+  // const activeTrimestre = ref()
 
-    alunos.value = await alunoStore.getAlunosByTurma(activeTurma.value)
+
+  watch(() => [activeTurma.value, activeDisciplina.value], async () => {
+    console.log(activeDisciplina.value)
+    notas.value = await notaStore.getNotasByTurmaAndMateria(activeTurma.value, activeDisciplina.value)
   })
+
 
   onMounted(async () => {
     await turmaStore.getTurmas()
+    await disciplinasStore.getDisciplinas()
+    disciplinas.value = disciplinasStore.disciplinas
   })
+
 </script>
 <template>
   <h1 class="title">Conselhos</h1>
+
   <div class="Filtro-conselho">
-    <div>
-      <label>Ano</label>
-<select name="Ano">
-  <option v-for="turma in turmas" :key="turma.id" :value="turma.ano">
-    {{ turma.ano }}
-  </option>
-</select>
-    </div>
-    <div>
-      <label>Trimestre</label>
-      <select name="Trimestre">
-        <option value="1º Trimestre">1º Trimestre</option>
-        <option value="2º Trimestre">2º Trimestre</option>
-        <option value="3º Trimestre">3º Trimestre</option>
-      </select>
-    </div>
     <div>
       <label>Turma</label>
       <select name="Turma" v-model="activeTurma">
-        <option v-for="turma in turmas" :key="turma.id" :value="turma.id">{{ turma.nome }} - {{ turma.ano }}</option>
+        <option v-for="turma in turmas" :key="turma.id" :value="turma.id">
+          {{ turma.nome }} - {{ turma.ano }}
+        </option>
       </select>
     </div>
-  </div>
-  <div class="Filtro-conselho">
     <div>
       <label>Disciplina</label>
-      <select name="Disciplina" placeholder="Disciplina">
-        <option value="Geografia">Geografia</option>
-        <option value="Dev. Mobile">Dev. Mobile</option>
+      <select name="Disciplina" v-model="activeDisciplina">
+        <option v-for="disciplina in disciplinas" :key="disciplina.id" :value="disciplina.id">
+          {{ disciplina.nome }}
+        </option>
       </select>
     </div>
     <div>
       <label>Filtrar por:</label>
-      <select name="Filtro" placeholder="Filtrar por:">
-        <option value="Nota < 6">Nota menor de 6</option>
-        <option value="3info2">Mais ocorrencias</option>
+      <select name="Filtro">
+        <option value="Nota < 6">Nota menor que 6</option>
+        <option value="Mais ocorrências">Mais ocorrências</option>
       </select>
     </div>
     <div>
       <label>Ordenar por:</label>
-      <select name="Turma" placeholder="Ordenar por:">
-        <option value="Ordem Alfabetica A-Z">Ordem Alfabetica A-Z</option>
-        <option value="Ordem Alfabetica Z-A">Ordem Alfabetica Z-A</option>
+      <select name="Ordenar">
+        <option value="Ordem Alfabetica A-Z">Ordem Alfabética A-Z</option>
+        <option value="Ordem Alfabetica Z-A">Ordem Alfabética Z-A</option>
         <option value="Maior Nota">Maior Nota</option>
       </select>
     </div>
   </div>
 
-  <tr class="coluna-info">
-    <td>Nome</td>
-
-    <td>Nota</td>
-    <td>Ocorrencias</td>
-  </tr>
-  <tr class="coluna-desc" v-for="aluno in alunos" :key="aluno.id">
-    <td>{{ aluno.nome }}</td>
-    <td>2.0</td>
-    <RouterLink class="view-ocorrencias" :to="'/ocorrencia/' + aluno.id"><td  @click="goOCorencia">Ver ocorrencias</td></RouterLink>
-  </tr>
-  <hr />
+  <table class="tabela-ocorrencias">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Nota</th>
+        <th>Ocorrências</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="nota in notas" :key="nota.id">
+        <td>{{ nota.aluno.nome }}</td>
+        <td>{{ nota.valor }}</td>
+        <td>
+          <RouterLink class="view-ocorrencias" :to="'/ocorrencia/' + nota.aluno.id">
+            Ver ocorrências
+          </RouterLink>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style scoped>
 .title {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   margin-top: 15vh;
   font-family: 'Poppins', sans-serif;
   color: #2c4156;
 }
+
 .Filtro-conselho {
   display: flex;
   justify-content: center;
-  gap: 5vh;
+  gap: 2rem;
   margin-top: 5vh;
   font-family: 'Poppins', sans-serif;
 }
@@ -104,48 +111,50 @@
 .Filtro-conselho select {
   width: 200px;
   height: 40px;
-  text-align: center;
   border-radius: 9px;
-  border: 1px solid #00000049;
-  background-color: transparent;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-family: 'Poppins', sans-serif;
+  padding: 0.5rem;
+}
+
+.tabela-ocorrencias {
+  width: 100%;
+  margin-top: 5vh;
+  border-collapse: collapse;
   font-family: 'Poppins', sans-serif;
 }
 
-.coluna-info {
-  display: flex;
-  align-items: center;
+.tabela-ocorrencias th,
+.tabela-ocorrencias td {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+}
 
-  justify-content: space-around;
-  margin-top: 10vh;
+.tabela-ocorrencias th {
   background-color: #2c4156;
-  color: White;
-  font-family: 'Poppins', sans-serif;
-  height: 5vh;
-  gap: 40vh;
+  color: #fff;
+  font-weight: bold;
 }
-.coluna-desc {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  border-bottom: #2c4156;
-  font-family: 'Poppins', sans-serif;
-  height: 5vh;
-  border: black;
-  gap: 40vh;
+
+.tabela-ocorrencias tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
+
 .view-ocorrencias {
   background-color: #57788d;
-  padding: 7px;
-  color: #ffff;
-  border-radius: 10px;
-  font-size: large;
-  transition: 0.3s ease-in;
-  cursor: pointer;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   text-decoration: none;
-
+  font-size: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
+
 .view-ocorrencias:hover {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 </style>
+
 
