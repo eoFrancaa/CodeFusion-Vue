@@ -15,6 +15,6 @@ export default class OcorrenciasService {
   }
   async getOcorrenciasByAluno(id) {
     const response = await axios.get(`/ocorrências/?aluno__id=${id}`);
-    return response.data.results; 
+    return response.data.results;
   }
 }
