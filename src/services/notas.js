@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class ProductService {
+export default class NotasService {
   async getNotas() {
     const response = await axios.get('/notas/');
     return response.data.results;
@@ -17,8 +17,17 @@ export default class ProductService {
     return response.data;
   }
 
-  async getAlunosById(id) {
-    const response = await axios.get(`/alunos/${id}/`);
+  async getNotasById(id) {
+    const response = await axios.get(`/notas/${id}/`);
+    return response.data;
+  }
+
+  async getNotasByTurmaAndMateria(turma, disciplina) {
+    console.log(turma)
+    const response = await axios.get(`/notas/?aluno__turma__id=${turma}&aluno__turma__curso__disciplina__id=${disciplina}`);
+    console.log(response.data)
     return response.data;
   }
 }
+
+

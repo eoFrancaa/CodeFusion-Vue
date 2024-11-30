@@ -1,34 +1,32 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-import AlunoService from '@/services/aluno';
-const alunoService = new AlunoService();
+import NotaService from '@/services/notas';
+const notasService = new NotaService();
 
-export const useAlunoStore = defineStore('aluno', () => {
-  const alunos = ref([]);
+export const useNotasStore = defineStore('nota', () => {
+  const notas = ref([]);
 
-  async function getAlunos() {
-    alunos.value = await alunoService.getProducts();
+  async function getNotas() {
+    notas.value = await notasService.getNotas();
   }
 
-  async function getAlunosByTurma(turma) {
-    const alunos = await alunoService.getAlunoByturma(turma);
-    return alunos
+  async function getNotasByTurma(turma) {
+    const notas = await notasService.getNotasByturma(turma);
+    return notas
   }
 
-  async function createAluno(aluno) {
-    await alunoService.createAlunos(aluno);
-    getAlunos();
+  async function createNotas(notas) {
+    await notasService.createNota(notas);
+    getNotas();
   }
 
-  async function getAlunosById(id) {
-    const data = await alunoService.getAlunosById(id)
-    return data
+  async function getNotasByTurmaAndMateria(turma, disciplina) {
+    const response = await notasService.getNotasByTurmaAndMateria(turma, disciplina);
+    return response;
   }
 
-  async function getNotaByTurmaAndMateria(turma, materia) {
 
-  }
 
-  return { alunos, createAluno, getAlunos, getAlunosByTurma, getAlunosById };
+  return { notas, createNotas, getNotas, getNotasByTurmaAndMateria, getNotasByTurma };
 });

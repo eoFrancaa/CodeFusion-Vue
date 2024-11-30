@@ -10,117 +10,130 @@ const alunoStore = useAlunoStore()
 const aluno = ref({})
 
 onMounted( async () => {
-aluno.value = await alunoStore.getAlunosById(router.params.id)
+  aluno.value = await alunoStore.getAlunosById(router.params.id)
 })
 </script>
 <template>
-  <div class="info-aluno">
-      <img class="img-aluno" :src="aluno.capa_url"  />
-        <p> Nome do Aluno: {{ aluno.nome }}</p>
-        <p>Email do Aluno: {{ aluno.email }}</p>
+  <div class="info-aluno-container">
+    <div class="info-aluno">
+      <img class="img-aluno" :src="aluno.capa_url" alt="Foto do Aluno" />
+      <div>
+        <p class="aluno-nome">{{ aluno.nome }}</p>
+        <p class="aluno-email">{{ aluno.email }}</p>
+      </div>
     </div>
-<div class="Add">
-  <button class="Add-Ocorencia">Adicionar Ocorrencias</button>
-</div>
 
-  <tr class="coluna-info">
-    <td>Ocorrencias/Observações</td>
-    <td><select>
-    <option>1 Trimestre</option>
-    <option>2 Trimestre</option>
-    <option>3 Trimestre</option>
-  </select>
-    </td>
-    <td><select>
-    <option>2022</option>
-    <option>2023</option>
-    <option>2024</option>
-  </select></td>
-  </tr>
-  <tr class="coluna-desc">
-    <td>Registro de Atraso</td>
-    <td>1 Trimestre</td>
-    <td >2022</td>
-  </tr>
-  <hr />
-  <tr class="coluna-desc">
-    <td>Se Dedicou aos Estudos</td>
-    <td>1 Trimestre</td>
-   <td  >2022</td>
-  </tr>
-  <hr />
+    <div class="add-ocorrencia">
+      <button class="btn-add-ocorrencia">Adicionar Ocorrência</button>
+    </div>
 
+    <table class="tabela-ocorrencias">
+      <thead>
+        <tr>
+          <th>Ocorrências/Observações</th>
+          <th>Trimestre</th>
+          <th>Ano</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Registro de Atraso</td>
+          <td>1º Trimestre</td>
+          <td>2022</td>
+        </tr>
+        <tr>
+          <td>Uso de cigarro eletrônico</td>
+          <td>2º Trimestre</td>
+          <td>2023</td>
+        </tr>
+        <tr>
+          <td>Se dedicou aos estudos</td>
+          <td>3º Trimestre</td>
+          <td>2024</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
+
 <style scoped>
+.info-aluno-container {
+  margin: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
 .info-aluno {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
   margin-top: 15vh;
-  display: flex;
-  align-items: center;
-  gap: 2.1rem;
-  font-family: 'Poppins', sans-serif;
-  margin-left: 10vh;
-  flex-direction: column;
-  align-items: flex-start;
 }
+
 .img-aluno {
-  max-width: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.coluna-info {
+.aluno-nome {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.aluno-email {
+  font-size: 1rem;
+  color: #555;
+}
+
+.add-ocorrencia {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 5vh;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.btn-add-ocorrencia {
   background-color: #2c4156;
-  color: White;
-  font-family: 'Poppins', sans-serif;
-  height: 5vh;
-  gap: 40vh;
-}
-.coluna-desc {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  border-bottom: #2c4156;
-  font-family: 'Poppins', sans-serif;
-  height: 5vh;
-  border: black;
-  gap: 40vh;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
- select{
-    background-color:transparent;
-    border:0;
-    color: aliceblue;
-    font-family: 'Poppins', sans-serif;
-    font-size: medium;
-
+.btn-add-ocorrencia:hover {
+  background-color: #1a2b3c;
 }
 
-option{
-    color: #2c4156;
-    font-family: 'Poppins', sans-serif;
-
+.tabela-ocorrencias {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
 }
 
-.Add-Ocorencia{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    background-color: #2c4156;
-    border: 0;
-    color: aliceblue;
-    width: 200px;
-    height: 50px;
-    font-size: large;
-
-
-
+.tabela-ocorrencias th,
+.tabela-ocorrencias td {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
 }
-.Add{
-    display: flex;
-    justify-content: end  ;
+
+.tabela-ocorrencias th {
+  background-color: #2c4156;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.tabela-ocorrencias td {
+  text-align: center;
+}
+
+.tabela-ocorrencias tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 </style>
+
+
