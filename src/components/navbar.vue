@@ -62,8 +62,8 @@ const handleSingOut = async() => {
       <div class="modal-content">
         <router-link v-if="!isLoggedIn" class="bnt-style" to="/register"><p>Registrar</p></router-link>
         <router-link v-if="!isLoggedIn" class="bnt-style" to="/singin"><p>Entrar</p></router-link>
-
         <button class="bnt-style" v-if="isLoggedIn" @click="handleSingOut">Sign Out</button>
+
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@ const handleSingOut = async() => {
 
 .logo {
   margin-left: 50px;
-  max-width: 100px;
+  max-width: 140px;
   transition: transform 0.3s ease;
 }
 
