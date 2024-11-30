@@ -30,7 +30,6 @@ const singinWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(getAuth(), provider)
     .then((result) => {
-      console.log(result.user);
       authStore.setUser(result.user);
       router.push('/');
     })
