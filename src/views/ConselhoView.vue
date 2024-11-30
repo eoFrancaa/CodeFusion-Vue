@@ -3,21 +3,20 @@
   import { useTurmaStore } from '@/stores/turma';
   import { useNotasStore } from '@/stores/notas';
   import { useDisciplinasStore } from '@/stores/disciplinas';
-  // import { useTrimestreStore } from '@/stores/trimestre';
+
 
   const turmaStore = useTurmaStore()
   const notaStore = useNotasStore()
   const disciplinasStore = useDisciplinasStore()
-  // const trimestresStore = useTrimestreStore()
+
 
   const turmas = computed(() => turmaStore.turmas)
   const notas = ref([])
   const disciplinas = ref([])
-  // const trimestres = ref([])
+
 
   const activeTurma = ref()
   const activeDisciplina = ref()
-  // const activeTrimestre = ref()
 
 
   watch(() => [activeTurma.value, activeDisciplina.value], async () => {
