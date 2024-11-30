@@ -101,6 +101,7 @@ const handleSingOut = async() => {
   justify-content: center;
   align-items: flex-start;
   max-height: 250px;
+ 
 }
 
 .modalProfile .modal-content {

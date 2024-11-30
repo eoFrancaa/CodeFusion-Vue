@@ -6,8 +6,8 @@ export default {
 
     const pessoa = ref([
       { nome: 'Rafael de França', descricao: 'Designer, Programador,Front-end Back-end' },
-      { nome: 'Eduardo Gabriel dos Santos', descricao: 'Designer, Programador, Front-end Back-end' },
-      { nome: 'Leandro gustavo dos santos',  descricao: 'Designer, Programador, Front-end Back-end' },
+      { nome: 'Eduardo Gabriel dos Santos', descricao: 'Programador, Front-end ' },
+      { nome: 'Leandro gustavo dos santos',  descricao: ' Programador Back-end' },
     ]);
 
     return {
@@ -26,9 +26,10 @@ export default {
     </div>
     </div>
     <div class="sobre-texto">
-      <div class="text">
-        A equipe CodeFusion desenvolveu este site como parte de um Hackathon realizado no IFC Araquari. Durante o evento, nosso time se dedicou a criar uma solução inovadora, aplicando habilidades técnicas e criatividade para atender aos desafios propostos. Estamos orgulhosos do resultado alcançado e do aprendizado compartilhado ao longo dessa jornada colaborativa.
+      <div class="reforma">
+      <p class="text"> A equipe CodeFusion desenvolveu este site como parte de um Hackathon realizado no IFC Araquari. Durante o evento, nosso time se dedicou a criar uma solução inovadora, aplicando habilidades técnicas e criatividade para atender aos desafios propostos. Estamos orgulhosos do resultado alcançado e do aprendizado compartilhado ao longo dessa jornada colaborativa.   </p>
       </div>
+
     </div>
   </div>
 </template>
@@ -52,28 +53,38 @@ export default {
   margin-right: 50px;
 }
 .sobre-texto{
-  border-radius: 30px;
-  width: 501px;
+  border-radius: 10px;
+  width: 500px;
   height: 601px;
-  background-color: #D9D9D9;
-  color: #000000;
+  background-color: #FFFF;
+  color: #1f1f1f;
   margin-top: 30px;
   margin-left: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.582);
+}
+.reforma{
+  width: 360px;
+  height: 550px;
 }
 .text{
   background-color: #D9D9D9;
-  font-size: 30px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-weight: lighter;
+  font-size: 28px;
+  background-color: transparent;
+
 }
 .descricao-dev{
   margin-left: 155px;
   white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
 }
 #funcao-dev{
+  font-size: 1.1rem;
   margin-left: 155px;
   white-space: nowrap;
   color: #2C4156;
