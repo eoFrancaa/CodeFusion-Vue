@@ -47,13 +47,14 @@ const isAuthenticated = computed(() => {
   position: fixed;
   bottom: 15vh;
   left: 40%;
-  transition: background-color 0.3s ease,transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .b-inicio:hover {
   background-color: #4e6f82;
-  transform:  scale(1.1);
+  transform: scale(1.1);
 }
+
 .welcome {
   position: absolute;
   top: 20vh;
@@ -68,15 +69,6 @@ const isAuthenticated = computed(() => {
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.233);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .container-1,
@@ -109,4 +101,82 @@ const isAuthenticated = computed(() => {
   width: 20vh;
   background-color: #39586d;
 }
+
+
+@media (max-width: 768px) {
+  .b-inicio {
+    bottom: 10vh;
+    left: calc(50% - 100px);
+    width: 220px;
+    height: 55px;
+    font-size: medium;
+  }
+
+  .welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .container-1,
+  .container-2,
+  .container-3 {
+    height: 20vh;
+    width: 15vh;
+  }
+
+  .container-1 {
+    top: 20vh;
+    left: 5vh;
+  }
+
+  .container-2 {
+    top: 30vh;
+    left: 25vh;
+  }
+
+  .container-3 {
+    top: 20vh;
+    left: 45vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .b-inicio {
+    width: 180px;
+    height: 50px;
+    font-size: small;
+  }
+
+  .welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .container-1,
+  .container-2,
+  .container-3 {
+    height: 20vh;
+    width: 10vh;
+  }
+
+  .container-1 {
+    left: 2vh;
+  }
+
+  .container-2 {
+    top: 25vh;
+    left: 40%;
+  }
+
+  .container-3 {
+    right: 0;
+  }
+}
 </style>
+

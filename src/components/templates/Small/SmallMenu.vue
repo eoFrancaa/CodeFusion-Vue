@@ -1,5 +1,8 @@
 <script setup>
+import navbarMobile from '@/components/navbarMobile.vue';
 </script>
 <template>
-    <p>mobile</p>
+    <footer>
+      <navbarMobile/>
+    </footer>
 </template>

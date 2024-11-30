@@ -98,6 +98,7 @@
   margin-top: 15vh;
   font-family: 'Poppins', sans-serif;
   color: #2c4156;
+  font-size: 2rem;
 }
 
 .Filtro-conselho {
@@ -141,7 +142,6 @@
 .tabela-ocorrencias tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
 .view-ocorrencias {
   background-color: #57788d;
   color: #fff;
@@ -154,6 +154,65 @@
 
 .view-ocorrencias:hover {
   transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+    margin-top: 10vh;
+  }
+
+  .Filtro-conselho {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .Filtro-conselho select {
+    width: 180px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .tabela-ocorrencias th,
+  .tabela-ocorrencias td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .view-ocorrencias {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+    margin-top: 8vh;
+  }
+
+  .Filtro-conselho {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Filtro-conselho select {
+    width: 90%;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  .tabela-ocorrencias th,
+  .tabela-ocorrencias td {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  .view-ocorrencias {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
 }
 </style>
 

@@ -33,60 +33,137 @@ export default {
     </div>
   </div>
 </template>
-<style>
-.container-sobre{
+<style scoped>
+.container-sobre {
   display: flex;
-  margin-top: 175px;
-  margin-left: 150px;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 100px;
+  padding: 0 20px;
 }
-.sobre-dev{
+
+.sobre-dev {
   display: flex;
   flex-direction: column;
-  gap: 100px;
-}
-.fotos-dev{
-  width: 150px;
-  height: 150px;
-  background-color: #D9D9D9;
-  border-radius: 50%;
+  gap: 30px;
+  align-items: center;
+  width: 250px;
   margin-right: 50px;
 }
-.sobre-texto{
+
+.fotos-dev {
+  width: 120px;
+  height: 120px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.descricao-dev {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 1rem;
+}
+
+#funcao-dev {
+  font-size: 1rem;
+  color: #2c4156;
+  font-weight: bold;
+  text-align: center;
+}
+
+.sobre-texto {
   border-radius: 10px;
-  width: 500px;
-  height: 601px;
-  background-color: #FFFF;
+  width: 100%;
+  max-width: 550px;
+  background-color: #ffff;
   color: #1f1f1f;
   margin-top: 30px;
-  margin-left: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 30px;
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.582);
 }
-.reforma{
-  width: 360px;
-  height: 550px;
+
+.reforma {
+  width: 100%;
 }
-.text{
-  background-color: #D9D9D9;
-  text-align: left;
+
+.text {
+  text-align: justify;
   font-family: 'Pavanam', sans-serif;
   font-weight: lighter;
-  font-size: 28px;
+  font-size: 18px;
   background-color: transparent;
+}
 
+@media (max-width: 768px) {
+  .container-sobre {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .sobre-dev {
+    width: 100%;
+    margin-right: 0;
+    gap: 20px;
+  }
+
+  .fotos-dev {
+    width: 100px;
+    height: 100px;
+  }
+
+  .descricao-dev,
+  #funcao-dev {
+    font-size: 1rem;
+  }
+
+  .sobre-texto {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
 }
-.descricao-dev{
-  margin-left: 155px;
-  white-space: nowrap;
-  font-family: 'Poppins', sans-serif;
-}
-#funcao-dev{
-  font-size: 1.1rem;
-  margin-left: 155px;
-  white-space: nowrap;
-  color: #2C4156;
+
+@media (max-width: 480px) {
+  .container-sobre {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .sobre-dev {
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .fotos-dev {
+    width: 80px;
+    height: 80px;
+  }
+
+  .descricao-dev {
+    font-size: 0.9rem;
+  }
+
+  #funcao-dev {
+    font-size: 0.9rem;
+  }
+
+  .sobre-texto {
+    width: 90%;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
 }
 </style>
+
+
