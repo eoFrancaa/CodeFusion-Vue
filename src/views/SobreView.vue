@@ -72,7 +72,7 @@ export default {
 .text{
   background-color: #D9D9D9;
   text-align: left;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Pavanam', sans-serif;
   font-weight: lighter;
   font-size: 28px;
   background-color: transparent;
