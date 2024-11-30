@@ -1,11 +1,13 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useAuthStore } from '@/stores/auth.js';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 
 const isLoggedIn = ref(false);
 const modalProfile = ref(false);
 const router = useRouter();
+const authStore = useAuthStore();
 
 let auth;
 onMounted(() => {
@@ -30,7 +32,9 @@ const closeModal = (event) => {
   }
 };
 
-const handleSingOut = () => {
+const handleSingOut = async() => {
+  await authStore.logout()
+  console.log(authStore.isAuthenticated)
   signOut(auth).then(() => {
     router.push("/");
   });

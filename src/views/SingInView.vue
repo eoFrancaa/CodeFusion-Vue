@@ -1,36 +1,34 @@
 <script setup>
-import { ref } from 'vue'
-import { getAuth, signInWithEmailAndPassword ,GoogleAuthProvider,signInWithPopup} from 'firebase/auth'
-
+import { ref, onMounted } from 'vue'
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { useAuthStore } from '@/stores/auth'
 import router from '@/router'
 
 const email = ref('')
 const password = ref('')
-const errMsg = ref()
+const errMsg = ref('')
+
+const authStore = useAuthStore()
+
 
 const register = () => {
-const auth = getAuth
-signInWithEmailAndPassword(getAuth(), email.value, password.value)
+  const auth = getAuth()
+  signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
-      console.log('Entrou com Sucesso')
-
-      console.log('auth.currentUser')
-
-      router.push('/')
+      console.log('Logged in successfully')
+      authStore.setUser(data.user)
     })
-
-
     .catch((error) => {
-      console.log(error.code);
+      console.log(error.code)
       switch (error.code) {
         case 'auth/invalid-email':
-          errMsg.value = 'Invalid email';
+          errMsg.value = 'Email Invalido';
           break;
         case 'auth/user-not-found':
-          errMsg.value = 'No account with that email was found';
+          errMsg.value = 'Nenhuma conta com esse e-mail foi encontrada';
           break;
         case 'auth/wrong-password':
-          errMsg.value = 'Incorrect password';
+          errMsg.value = 'Senha Incorreta';
           break;
         default:
           errMsg.value = 'Email or password was incorrect';
@@ -38,17 +36,26 @@ signInWithEmailAndPassword(getAuth(), email.value, password.value)
       }
     });
 };
-const singinWithGoogle = ()=> {
-const provider = new GoogleAuthProvider();
-signInWithPopup(getAuth(),provider)
-  .then((result) => {
-    console.log(result.user);
-    router.push("/")
-  })
-  .catch((error) =>{
-console.log(errMsg)
-  });}
+
+
+const signinWithGoogle = () => {
+  const provider = new GoogleAuthProvider()
+  signInWithPopup(getAuth(), provider)
+    .then((result) => {
+      console.log(result.user)
+      authStore.setUser(result.user)
+      router.push('/')
+    })
+    .catch((error) => {
+      console.log(error)
+      errMsg.value = 'Failed to login with Google'
+    });
+}
+onMounted(() => {
+  authStore.checkUserAuth()
+})
 </script>
+
 <template>
   <div class="register-container">
     <div class="form-container">
@@ -56,7 +63,8 @@ console.log(errMsg)
       <p><input type="text" placeholder="Email" v-model="email" class="input-field"></p>
       <p><input type="password" placeholder="Password" v-model="password" class="input-field"></p>
       <p><button @click="register" class="btn primary-btn">Entrar</button></p>
-      <p><button @click="singinWithGoogle" class="btn google-btn">Entrar com o Google</button></p>
+      <p><button @click="signinWithGoogle" class="btn google-btn">Entrar com o Google</button></p>
+      <p v-if="errMsg" class="error-msg">{{ errMsg }}</p>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useStorage } from '@vueuse/core'
 
 export const useAuthStore = defineStore('auth', () => {

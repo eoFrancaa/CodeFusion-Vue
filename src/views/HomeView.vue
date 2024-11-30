@@ -1,12 +1,14 @@
 <script setup>
 import { useAuthStore } from '@/stores/auth.js';
+import { computed} from 'vue';
 import { RouterLink } from 'vue-router';
 
 
 const authStore = useAuthStore();
-
-
-const isAuthenticated = authStore.isAuthenticated;
+const isAuthenticated = computed(() => {
+  console.log(authStore.isAuthenticated)
+  return authStore.isAuthenticated
+})
 </script>
 
 <template>
